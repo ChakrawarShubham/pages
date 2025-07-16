@@ -304,6 +304,35 @@
     </style>
 </head>
 <body>
+    <script>
+        function switchPlan(planType) {
+            // Hide all plan contents
+            document.querySelectorAll('.plan-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all cards
+            document.querySelectorAll('.plan-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            // Show selected plan content
+            document.getElementById(planType + '-content').classList.add('active');
+            
+            // Add active class to clicked card
+            document.querySelector(`[data-plan="${planType}"]`).classList.add('active');
+        }
+        
+        // Add click event listeners when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.plan-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const planType = this.getAttribute('data-plan');
+                    switchPlan(planType);
+                });
+            });
+        });
+    </script>
     <div class="container">
         <div class="header">
             <h1>🤖 Agentic AI Mastery</h1>
